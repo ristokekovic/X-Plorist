@@ -9,9 +9,12 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PlaceDetails } from '../pages/place-details/place-details';
+import { Map } from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAebh7K0NjmhuBbeNspbqIBsr5es0t2xRE",
@@ -29,6 +32,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     PlaceDetails,
+    Map,
     TabsPage
   ],
   imports: [
@@ -43,11 +47,14 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     PlaceDetails,
+    Map,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

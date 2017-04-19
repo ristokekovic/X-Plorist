@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+
+import { PlaceDetails } from '../place-details/place-details';
 
 @Component({
   selector: 'page-home',
@@ -8,10 +10,19 @@ import { AngularFire } from 'angularfire2';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController,
-              af: AngularFire) {
-      console.log(af);
+  places: FirebaseListObservable <any[]>;
 
+  constructor(public navCtrl: NavController,
+              private af: AngularFire) {
+
+  }
+
+  ngOnInit(){
+      this.places = this.af.database.list('/places');
+  }
+
+  onSelect(place){
+    this.navCtrl.push(PlaceDetails, { place: place });
   }
 
 }

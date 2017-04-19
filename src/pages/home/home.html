@@ -4,14 +4,38 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openLoginPage()">
+        Login
+      </button>
+      <button ion-item (click)="logout()">
+        Logout
+      </button>
+      <button ion-item (click)="openAddPage()">
+        Add New Place
+      </button>
+      <button ion-item (click)="openFavouritesPage()">
+        Favourites
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+<ion-content class="card-background-page">
+
+  <ion-card *ngFor="let place of places | async" (click)="onSelect(place)">
+    <img src= {{place.img}} />
+    <div class="card-title">{{place.name}}</div>
+    <div class="card-subtitle">{{place.numOfPeople}} People Visited</div>
+  </ion-card>
+
 </ion-content>

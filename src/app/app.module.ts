@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { AngularFireModule } from 'angularfire2';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -10,6 +11,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyAebh7K0NjmhuBbeNspbqIBsr5es0t2xRE",
+    authDomain: "x-plorist.firebaseapp.com",
+    databaseURL: "https://x-plorist.firebaseio.com",
+    projectId: "x-plorist",
+    storageBucket: "x-plorist.appspot.com",
+    messagingSenderId: "525593788976"
+};
 
 @NgModule({
   declarations: [
@@ -21,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

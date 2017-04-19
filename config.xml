@@ -41,4 +41,6 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyAH8Ggs-ubkyZy_ZgNp9HkVYNcNodeIqo8" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="~2.4.2" />
+    <plugin name="cordova-plugin-camera" spec="~2.4.0" />
+    <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
 </widget>

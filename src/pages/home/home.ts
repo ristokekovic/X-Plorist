@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { PlaceDetails } from '../place-details/place-details';
+import { AddPage } from '../add/add';
 
 @Component({
   selector: 'page-home',
@@ -23,6 +24,10 @@ export class HomePage {
 
   onSelect(place){
     this.navCtrl.push(PlaceDetails, { place: place });
+  }
+
+  openAddPage(){
+    this.navCtrl.push(AddPage, {places: this.places});       
   }
 
 }

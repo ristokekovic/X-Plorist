@@ -10,11 +10,15 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PlaceDetails } from '../pages/place-details/place-details';
 import { Map } from '../pages/map/map';
+import { AddPage } from '../pages/add/add';
+import { MapSelectPage } from '../pages/map-select/map-select';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { Toast } from '@ionic-native/toast';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAebh7K0NjmhuBbeNspbqIBsr5es0t2xRE",
@@ -33,6 +37,8 @@ export const firebaseConfig = {
     HomePage,
     PlaceDetails,
     Map,
+    AddPage,
+    MapSelectPage,
     TabsPage
   ],
   imports: [
@@ -48,6 +54,8 @@ export const firebaseConfig = {
     HomePage,
     PlaceDetails,
     Map,
+    AddPage,
+    MapSelectPage,
     TabsPage
   ],
   providers: [
@@ -55,6 +63,8 @@ export const firebaseConfig = {
     SplashScreen,
     GoogleMaps,
     Geolocation,
+    Camera,
+    Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

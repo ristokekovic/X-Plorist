@@ -4,6 +4,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { PlaceDetails } from '../place-details/place-details';
 import { AddPage } from '../add/add';
+import { FavouritesPage } from '../favourites/favourites';
 
 @Component({
   selector: 'page-home',
@@ -28,6 +29,10 @@ export class HomePage {
 
   openAddPage(){
     this.navCtrl.push(AddPage, {places: this.places});       
+  }
+
+  openFavouritesPage(){
+    this.navCtrl.push(FavouritesPage);
   }
 
 }

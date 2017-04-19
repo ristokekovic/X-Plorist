@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button (click)="cancel()">
+              <ion-icon ion="md-close" md="md-close">  
+              </ion-icon>
+          </button>
+      </ion-buttons>
+    <ion-title>
+      Place Details
+    </ion-title>
+    <ion-buttons end>
+          <button ion-button (click)="done()">
+              <ion-icon ion="md-checkmark" md="md-checkmark">  
+              </ion-icon>
+              </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+      <img src= {{place.img}} />
+      <ion-card-content>
+        <ion-card-title>
+          {{place.name}}
+          </ion-card-title>
+        <p>
+          {{place.description}}
+        </p>
+      </ion-card-content>
+
+
+      <ion-row no-padding>
+          <ion-col>
+            <button ion-button clear small color="danger" icon-left (click)="showMap(place)">
+              <ion-icon name='pin'></ion-icon>
+              Show On Map
+            </button>
+          </ion-col>
+          <ion-col text-center>
+            <button ion-button clear small color="danger" icon-left (click)="removePlace()">
+              <ion-icon name='star'></ion-icon>
+              Remove Favourite
+            </button>
+          </ion-col>
+          <!--<ion-col text-right>
+            <button ion-button clear small color="danger" icon-left>
+              <ion-icon name='share-alt'></ion-icon>
+              Share
+            </button>
+          </ion-col>-->
+        </ion-row>
+
+
+</ion-card>
+   
+</ion-content>

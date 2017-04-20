@@ -5,6 +5,10 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { PlaceDetails } from '../place-details/place-details';
 import { AddPage } from '../add/add';
 import { FavouritesPage } from '../favourites/favourites';
+import { LoginPage } from '../login/login';
+
+import { Storage } from '@ionic/storage';
+import { Toast } from '@ionic-native/toast';
 
 @Component({
   selector: 'page-home',
@@ -12,10 +16,14 @@ import { FavouritesPage } from '../favourites/favourites';
 })
 export class HomePage {
 
+  user;
+
   places: FirebaseListObservable <any[]>;
 
   constructor(public navCtrl: NavController,
-              private af: AngularFire) {
+              private af: AngularFire,
+              private storage: Storage,
+              private toast: Toast) {
 
   }
 
@@ -28,11 +36,63 @@ export class HomePage {
   }
 
   openAddPage(){
-    this.navCtrl.push(AddPage, {places: this.places});       
+    this.storage.ready().then(() => {
+      this.storage.get('currentUser').then((val) => {
+        this.user = val;
+        if(this.user != null){
+          this.navCtrl.push(AddPage, {places: this.places});
+        } else {
+          this.toast.show("You are not logged in", '5000', 'center').subscribe(
+                    toast => {
+                        //console.log(toast);
+                    }
+                );
+        }
+      });
+    });
   }
 
   openFavouritesPage(){
     this.navCtrl.push(FavouritesPage);
+  }
+
+  openLoginPage(){
+    this.storage.ready().then(() => {
+      this.storage.get('currentUser').then((val) => {
+        this.user = val;
+        if(this.user != null){
+          this.toast.show("You are already logged in", '5000', 'center').subscribe(
+                    toast => {
+                      //console.log(toast);
+                    }
+                 );
+        } else {
+          this.navCtrl.push(LoginPage);
+        }
+      });
+    });
+  }
+
+  logout(){
+      this.storage.ready().then(() => {
+        this.storage.get('currentUser').then((val) => {
+          this.user = val;
+          if(this.user != null){
+            this.storage.remove('currentUser');
+            this.toast.show("You have logged out", '5000', 'center').subscribe(
+                    toast => {
+                      //console.log(toast);
+                    }
+                 );
+          } else {
+            this.toast.show("You are not logged in", '5000', 'center').subscribe(
+                    toast => {
+                      //console.log(toast);
+                    }
+                 );
+          }
+      });
+    });
   }
 
 }

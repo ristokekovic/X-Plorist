@@ -45,4 +45,8 @@
   <plugin name="cordova-plugin-camera" spec="~2.4.0"/>
   <plugin name="cordova-plugin-x-toast" spec="~2.6.0"/>
   <plugin name="cordova-sqlite-storage" spec="~2.0.3"/>
+  <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
+    <variable name="APP_ID" value="1659556324351355"/>
+    <variable name="APP_NAME" value="6d8a7fc5f4c83667dec97973bd217560"/>
+  </plugin>
 </widget>

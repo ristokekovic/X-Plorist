@@ -14,6 +14,7 @@ import { AddPage } from '../pages/add/add';
 import { MapSelectPage } from '../pages/map-select/map-select';
 import { FavouritesPage } from '../pages/favourites/favourites';
 import { FavouritesDetailsPage } from '../pages/favourites-details/favourites-details';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +22,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
+import { Facebook } from '@ionic-native/facebook';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -45,6 +47,7 @@ export const firebaseConfig = {
     MapSelectPage,
     FavouritesPage,
     FavouritesDetailsPage,
+    LoginPage,
     TabsPage
   ],
   imports: [
@@ -65,6 +68,7 @@ export const firebaseConfig = {
     MapSelectPage,
     FavouritesPage,
     FavouritesDetailsPage,
+    LoginPage,
     TabsPage
   ],
   providers: [
@@ -74,6 +78,7 @@ export const firebaseConfig = {
     Geolocation,
     Camera,
     Toast,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -23,6 +23,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { Facebook } from '@ionic-native/facebook';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -79,6 +80,7 @@ export const firebaseConfig = {
     Camera,
     Toast,
     Facebook,
+    TwitterConnect,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

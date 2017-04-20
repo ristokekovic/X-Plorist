@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-//import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
 
@@ -24,7 +24,7 @@ export class LoginPage {
 
   constructor(private af: AngularFire, 
               private fb: Facebook, 
-              //private twitter: TwitterConnect, 
+              private twitter: TwitterConnect, 
               public navCtrl: NavController, 
               private storage: Storage, 
               private toast: Toast, 
@@ -79,14 +79,18 @@ export class LoginPage {
     });
   }
 
-  /*twitterLogin(){
+  twitterLogin(){
     this.twitter.login().then((response) => {
       let found = false;
-      this.users.forEach(element => {
-        if(this.users.id == response.userId){
+      
+      this.users.forEach((element) => {
+      let index;
+      for(index = 0; index < element.length; index++){
+        if(element[index].id == response.userId){
           found = true;
         }
-      });
+      }
+
 
       if(!found){
          this.users.push({
@@ -95,15 +99,21 @@ export class LoginPage {
         });
       }
 
+      });
+
       this.storage.ready().then(() => {
         this.storage.set('currentUser', response.userId);
         console.log(this.storage.get('currentUser'));
       });
 
-      this.toast.show("You have successfuly logged in", '5000', 'center');
+      this.toast.show("You have successfuly logged in", '5000', 'center').subscribe(
+                    toast => {
+                      //console.log(toast);
+                    }
+                 );
       this.navCtrl.pop();
     });
-  }*/
+  }
 
 
 }

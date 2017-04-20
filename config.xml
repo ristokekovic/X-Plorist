@@ -28,6 +28,8 @@
   <preference name="SplashMaintainAspectRatio" value="true"/>
   <preference name="FadeSplashScreenDuration" value="300"/>
   <preference name="SplashShowOnlyFirstTime" value="false"/>
+  <preference name="TwitterConsumerKey" value="5DJTd9a8UeoZ94gmV9ZoOJf4F"/>
+  <preference name="TwitterConsumerSecret" value="GwJPe521u9r5j4KnRIwr0Hnh99NyUHNzYykAjqPJlfPJBz7Ev3"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -48,5 +50,8 @@
   <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
     <variable name="APP_ID" value="1659556324351355"/>
     <variable name="APP_NAME" value="6d8a7fc5f4c83667dec97973bd217560"/>
+  </plugin>
+  <plugin name="twitter-connect-plugin" spec="~0.6.0">
+    <variable name="FABRIC_KEY" value="7061f2bf5229d96954a9907591bcb66f0014dbb9"/>
   </plugin>
 </widget>

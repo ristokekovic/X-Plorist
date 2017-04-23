@@ -14,6 +14,9 @@ export class PlaceDetails {
 
     place;
     places;
+    placeId;
+    visited;
+    found;
 
     constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -72,6 +75,66 @@ export class PlaceDetails {
      });
 
      
+    }
+
+    markLocation(){
+                                
+       this.storage.ready().then(() => {
+           this.storage.get('currentUser').then((val) => {
+                if(val == null){
+                    this.toast.show("You need to be logged in to do that", '5000', 'center').subscribe(
+                    toast => {
+                      //console.log(toast);
+                    }
+                 );
+                } else {
+                    let id;
+                    let users = this.af.database.list('/users');
+                    let placeId = this.place.$key;
+                    let found = false;
+                    let visited;
+                    users.forEach(element => {
+                        let index;
+                        for(index = 0; index < element.length; index++){
+                            if(element[index].id == val){
+                                id = element[index].$key;
+                                let userObj = this.af.database.object('/users/'+id);
+                                userObj.forEach(tmp => {
+                                    visited = tmp.visited;
+                                    for (var key in visited) {
+                                        if(key == placeId)
+                                            found = true;
+                                    }
+
+                                    if(found){
+                                        //TODO: For some reason, this toast appears after successfuly marking a place, as if the whole method is invoked again.
+                                        //That needs to be checked in the future
+                                        this.toast.show("You already marked this place as visited", '5000', 'center').subscribe(
+                                        toast => {
+                                        //console.log(toast);
+                                        });
+                                    } else {
+                                        visited[placeId] = true;
+                                        this.af.database.object('/users/'+id).update({
+                                            visited: visited
+                                        });
+                                        this.af.database.object('/places/'+this.place.$key).update({
+                                                numOfPeople: ++this.place.numOfPeople
+                                        });
+                                        this.toast.show("You have successfuly marked this place as visited", '5000', 'center').subscribe(
+                                        toast => {
+                                        //console.log(toast);
+                                    });
+                                  }
+                                });
+                            }
+                        }
+                    });
+                }
+           });
+        
+       });
+    
     }
 
 }

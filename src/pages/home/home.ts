@@ -6,6 +6,7 @@ import { PlaceDetails } from '../place-details/place-details';
 import { AddPage } from '../add/add';
 import { FavouritesPage } from '../favourites/favourites';
 import { LoginPage } from '../login/login';
+import { AddedPlaces } from '../added-places/added-places';
 
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
@@ -38,7 +39,7 @@ export class HomePage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 10000
+      duration: 2000
     });
     loader.present();
   }
@@ -80,6 +81,23 @@ export class HomePage {
                  );
         } else {
           this.navCtrl.push(LoginPage);
+        }
+      });
+    });
+  }
+
+  openAddedPlacesPage(){
+    this.storage.ready().then(() => {
+      this.storage.get('currentUser').then((val) => {
+        this.user = val;
+        if(this.user != null){
+          this.navCtrl.push(AddedPlaces);
+        } else {
+          this.toast.show("You are not logged in", '5000', 'center').subscribe(
+                    toast => {
+                        //console.log(toast);
+                    }
+                );
         }
       });
     });

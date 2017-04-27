@@ -5,6 +5,7 @@ import { MapSelectPage } from '../map-select/map-select';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../home/home';
 
@@ -31,7 +32,13 @@ export class AddPage {
   }
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, private toast: Toast) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private camera: Camera, 
+              public actionSheetCtrl: ActionSheetController, 
+              public alertCtrl: AlertController, 
+              private toast: Toast,
+              private storage: Storage) {
       this.places = navParams.get('places');
   }
 
@@ -124,31 +131,41 @@ export class AddPage {
       alert.present();
     }
 
+    let user;
 
-    if(this.image != null){
-      this.places.push({
-        name: this.place.name,
-        description: this.place.description,
-        img: this.image,
-        numOfPeople: 0
-      });
-    } else {
-      this.places.push({
-        name: this.place.name,
-        description: this.place.description,
-        img: 'https://media.pixilinkserver.com/default-building.png',
-        numOfPeople: 0
-      });
-    }
+    this.storage.ready().then(() => {
+      this.storage.get('currentUser').then((val) => {
+        user = val;
 
-    this.toast.show("New place added", '5000', 'center').subscribe(
-      toast => {
-        //console.log(toast);
-      }
-    );
+        if(this.image != null){
+          this.places.push({
+            name: this.place.name,
+            description: this.place.description,
+            img: this.image,
+            addedBy: user,
+            numOfPeople: 0
+          });
+        } else {
+          this.places.push({
+            name: this.place.name,
+            description: this.place.description,
+            img: 'https://media.pixilinkserver.com/default-building.png',
+            addedBy: user,
+            numOfPeople: 0
+          });
+        }
 
-    this.navCtrl.pop();
-    this.navCtrl.push(HomePage);
+        this.toast.show("New place added", '5000', 'center').subscribe(
+          toast => {
+            //console.log(toast);
+          }
+        );
+
+        this.navCtrl.pop();
+        this.navCtrl.push(HomePage);
+        });   
+
+    });
 
   }
 

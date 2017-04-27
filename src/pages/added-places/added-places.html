@@ -1,0 +1,28 @@
+<!--
+  Generated template for the AddedPlaces page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>added-places</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="card-background-page">
+
+  <ion-card *ngFor="let place of places" (click)="onSelect(place)">
+    <img src= {{place.img}} />
+    <div class="card-title">{{place.name}}</div>
+    <div class="card-subtitle">{{place.numOfPeople}} People Visited</div>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab mini (click)="openAddPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>

@@ -15,6 +15,7 @@ import { MapSelectPage } from '../pages/map-select/map-select';
 import { FavouritesPage } from '../pages/favourites/favourites';
 import { FavouritesDetailsPage } from '../pages/favourites-details/favourites-details';
 import { LoginPage } from '../pages/login/login';
+import { AddedPlaces } from '../pages/added-places/added-places';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -52,6 +53,7 @@ export const firebaseConfig = {
     FavouritesPage,
     FavouritesDetailsPage,
     LoginPage,
+    AddedPlaces,
     TabsPage
   ],
   imports: [
@@ -73,6 +75,7 @@ export const firebaseConfig = {
     FavouritesPage,
     FavouritesDetailsPage,
     LoginPage,
+    AddedPlaces,
     TabsPage
   ],
   providers: [

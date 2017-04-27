@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
+    <!--<ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
@@ -37,5 +42,9 @@
     <div class="card-title">{{place.name}}</div>
     <div class="card-subtitle">{{place.numOfPeople}} People Visited</div>
   </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab mini (click)="openAddPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

@@ -24,6 +24,9 @@ import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { Facebook } from '@ionic-native/facebook';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
+
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -81,6 +84,8 @@ export const firebaseConfig = {
     Toast,
     Facebook,
     TwitterConnect,
+    InAppBrowser,
+    BrowserTab,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
@@ -9,6 +9,7 @@ import { LoginPage } from '../login/login';
 
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -23,12 +24,23 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private af: AngularFire,
               private storage: Storage,
-              private toast: Toast) {
+              private toast: Toast,
+              public loadingCtrl: LoadingController) {
+
 
   }
 
   ngOnInit(){
       this.places = this.af.database.list('/places');
+      this.presentLoading();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 10000
+    });
+    loader.present();
   }
 
   onSelect(place){

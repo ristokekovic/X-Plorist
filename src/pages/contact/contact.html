@@ -7,11 +7,27 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+  <img src="http://i.imgur.com/3ZEfPbx.jpg"/>
+  <ion-card-content>
+  <ion-card-title>
+      Risto Keković
+    </ion-card-title>
+  
+
+  </ion-card-content>
+</ion-card>
+
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+    <ion-list-header>Contact me via following networks</ion-list-header>
+    <ion-item (click)="openLink('https://github.com/Risto995')">
+      <ion-icon name="logo-github" item-left></ion-icon>
+      Risto995
+    </ion-item>
+    <ion-item (click)="openLink('https://www.linkedin.com/in/risto-kekovi%C4%87-a05898115/')">
+      <ion-icon name="logo-linkedin" item-left></ion-icon>
+       Risto Keković
     </ion-item>
   </ion-list>
 </ion-content>
